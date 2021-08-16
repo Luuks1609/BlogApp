@@ -63,3 +63,5 @@ export default Blogs
 // improvements
 // 1) useEffect runnen nadat input stopt d.m.v een timer
 // 2) gebruik maken van een custom axios hook
+// 3) profile page maken met userData (react router)
+// 4) open blog links op je eigen pagina (/blog/(id)) met eigen component
