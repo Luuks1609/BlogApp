@@ -1,5 +1,5 @@
 import { Avatar } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { GoogleLogout } from 'react-google-login'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectSignedIn, selectUserData, setInput, setSignedIn, setUserData } from '../features/userSlice'
@@ -10,6 +10,7 @@ const Navbar = () => {
     const [inputValue, setInputValue] = useState('tech')
     const isSignedIn = useSelector(selectSignedIn)
     const userData = useSelector(selectUserData)
+    const inputRef = useRef()
 
     const dispatch = useDispatch()
 
@@ -23,14 +24,28 @@ const Navbar = () => {
         dispatch(setInput(inputValue))
     }
 
+    useEffect(() => {
+
+        const timer = setTimeout(() => {
+            if (isSignedIn && inputValue === inputRef.current.value) {
+                dispatch(setInput(inputValue))
+            }
+        }, 1000)
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [inputValue, inputRef, dispatch, isSignedIn])
+
     return (
         <div className='navbar'>
             <h1 className='navbar__header'>Blogmania 💬</h1>
             {isSignedIn && (<div className='blog__search'>
                 <input className='search'
+                    ref={inputRef}
                     placeholder='Search for a blog'
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
+
                 />
                 <button
                     className='submit'

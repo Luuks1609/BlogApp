@@ -24,15 +24,16 @@ const Blogs = () => {
             .catch((err) => {
                 console.log(err.message)
             })
-    }, [searchInput])
+    }, [searchInput, blog_url, dispatch])
 
     return (
         <div className='blog__page'>
             <h1 className='blog__page__header'>Blogs</h1>
             {loading ? (<h1 className='loading'>Loading...</h1>) : ''}
-            <div className='bloss'>
-                {blogs?.articles.map(blog => (
+            <div className='blogs'>
+                {blogs?.articles.map((blog, index) => (
                     <a className='blog'
+                        key={index}
                         target='_blank'
                         href={blog.url}
                         alt='Blog Link'
