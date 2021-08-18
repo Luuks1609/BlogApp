@@ -76,3 +76,16 @@
     font-weight: 500;
     line-height: 1.5em;
 }
+
+.blog__single__button {
+    width: 100px;
+    margin: 15px auto 15px auto;
+    padding: 5px 0;
+    border: none;
+    background: rgb(17, 17, 17);
+    font-family: "Inter";
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
